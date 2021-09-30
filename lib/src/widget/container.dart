@@ -52,8 +52,8 @@ class Neumorphic extends StatelessWidget {
 
   final NeumorphicStyle? style;
   final TextStyle? textStyle;
-  final EdgeInsets padding;
-  final EdgeInsets margin;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry margin;
   final Curve curve;
   final Duration duration;
   final bool
@@ -95,11 +95,11 @@ class _NeumorphicContainer extends StatelessWidget {
   final NeumorphicStyle style;
   final TextStyle? textStyle;
   final Widget? child;
-  final EdgeInsets margin;
+  final EdgeInsetsGeometry margin;
   final Duration duration;
   final Curve curve;
   final bool drawSurfaceAboveChild;
-  final EdgeInsets padding;
+  final EdgeInsetsGeometry padding;
 
   _NeumorphicContainer({
     Key? key,

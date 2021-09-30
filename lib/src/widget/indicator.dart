@@ -107,7 +107,7 @@ class NeumorphicIndicator extends StatefulWidget {
   final double percent;
   final double width;
   final double height;
-  final EdgeInsets padding;
+  final EdgeInsetsGeometry padding;
   final NeumorphicIndicatorOrientation orientation;
   final IndicatorStyle style;
   final Duration duration;

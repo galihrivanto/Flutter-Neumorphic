@@ -5,7 +5,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 class NeumorphicBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final NeumorphicStyle? style;
-  final EdgeInsets? padding;
+  final EdgeInsetsGeometry? padding;
   final bool forward;
 
   const NeumorphicBackButton({

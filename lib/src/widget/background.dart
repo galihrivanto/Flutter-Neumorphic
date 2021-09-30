@@ -17,8 +17,8 @@ import 'package:flutter_neumorphic/src/theme/neumorphic_theme.dart';
 @immutable
 class NeumorphicBackground extends StatelessWidget {
   final Widget? child;
-  final EdgeInsets? padding;
-  final EdgeInsets? margin;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   final Color backendColor;
   final BorderRadius? borderRadius;
 

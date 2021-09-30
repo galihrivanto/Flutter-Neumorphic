@@ -5,7 +5,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import '../theme/neumorphic_theme.dart';
 import '../widget/app_bar.dart';
-import 'animation/animated_scale.dart';
+import 'animation/animated_scale.dart' as animated;
 import 'container.dart';
 
 typedef void NeumorphicButtonClickListener();
@@ -50,8 +50,8 @@ class NeumorphicButton extends StatefulWidget {
   final Widget? child;
   final NeumorphicStyle? style;
   final double minDistance;
-  final EdgeInsets? padding;
-  final EdgeInsets? margin;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   final bool? pressed; //null, true, false
   final Duration duration;
   final Curve curve;
@@ -197,7 +197,7 @@ class _NeumorphicButtonState extends State<NeumorphicButton> {
         hasTapUp = true;
         _resetIfTapUp();
       },
-      child: AnimatedScale(
+      child: animated.AnimatedScale(
         scale: _getScale(),
         child: Neumorphic(
           margin: widget.margin ?? const EdgeInsets.all(0),

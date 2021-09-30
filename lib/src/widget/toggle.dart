@@ -135,7 +135,7 @@ class ToggleElement {
 class NeumorphicToggle extends StatelessWidget {
   static const MIN_EMBOSS_DEPTH = -1.0;
 
-  final EdgeInsets padding;
+  final EdgeInsetsGeometry padding;
 
   final List<ToggleElement> children;
   final Widget thumb;

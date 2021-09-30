@@ -156,7 +156,7 @@ class NeumorphicRadio<T> extends StatelessWidget {
   final Widget? child;
   final T? value;
   final T? groupValue;
-  final EdgeInsets padding;
+  final EdgeInsetsGeometry padding;
   final NeumorphicRadioStyle style;
   final NeumorphicRadioListener<T?>? onChanged;
   final bool isEnabled;
