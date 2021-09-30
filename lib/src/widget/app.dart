@@ -34,10 +34,53 @@ class NeumorphicApp extends StatelessWidget {
   final Map<LogicalKeySet, Intent>? shortcuts;
   final Map<Type, Action<Intent>>? actions;
 
+  final RouteInformationParser<Object>? routeInformationParser;
+  final RouterDelegate<Object>? routerDelegate;
+
   final bool debugShowMaterialGrid;
 
   const NeumorphicApp({
     Key? key,
+    this.title = '',
+    this.color,
+    this.initialRoute,
+    this.routes = const {},
+    this.home,
+    this.debugShowCheckedModeBanner = true,
+    this.navigatorKey,
+    this.navigatorObservers = const [],
+    this.onGenerateRoute,
+    this.onGenerateTitle,
+    this.onGenerateInitialRoutes,
+    this.onUnknownRoute,
+    this.theme = neumorphicDefaultTheme,
+    this.darkTheme = neumorphicDefaultDarkTheme,
+    this.locale,
+    this.localizationsDelegates,
+    this.supportedLocales = const <Locale>[Locale('en', 'US')],
+    this.themeMode = ThemeMode.system,
+    this.materialDarkTheme,
+    this.materialTheme,
+    this.builder,
+    this.localeResolutionCallback,
+    this.highContrastTheme,
+    this.highContrastDarkTheme,
+    this.localeListResolutionCallback,
+    this.showPerformanceOverlay = false,
+    this.checkerboardRasterCacheImages = false,
+    this.checkerboardOffscreenLayers = false,
+    this.showSemanticsDebugger = false,
+    this.debugShowMaterialGrid = false,
+    this.shortcuts,
+    this.actions,
+  })  : routeInformationParser = null,
+        routerDelegate = null,
+        super(key: key);
+
+  const NeumorphicApp.router({
+    Key? key,
+    required RouteInformationParser<Object> this.routeInformationParser,
+    required RouterDelegate<Object> this.routerDelegate,
     this.title = '',
     this.color,
     this.initialRoute,
@@ -103,12 +146,48 @@ class NeumorphicApp extends StatelessWidget {
     final materialTheme = this.materialTheme ?? _getMaterialTheme(theme);
     final materialDarkTheme =
         this.materialDarkTheme ?? _getMaterialTheme(darkTheme);
+
+    // if using routerDelegate
+    bool _useRouter = routerDelegate != null;
+
     return NeumorphicTheme(
       theme: theme,
       darkTheme: darkTheme,
       themeMode: themeMode,
-      child: Builder(
-        builder: (context) => IconTheme(
+      child: Builder(builder: (context) {
+        if (_useRouter) {
+          return IconTheme(
+            data: NeumorphicTheme.currentTheme(context).iconTheme,
+            child: MaterialApp.router(
+              title: title,
+              color: color,
+              theme: materialTheme,
+              darkTheme: materialDarkTheme,
+              themeMode: themeMode,
+              localizationsDelegates: localizationsDelegates,
+              supportedLocales: supportedLocales,
+              locale: locale,
+              onGenerateTitle: onGenerateTitle,
+              debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+              builder: builder,
+              localeResolutionCallback: localeResolutionCallback,
+              highContrastTheme: highContrastTheme,
+              highContrastDarkTheme: highContrastDarkTheme,
+              localeListResolutionCallback: localeListResolutionCallback,
+              showPerformanceOverlay: showPerformanceOverlay,
+              checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+              checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+              showSemanticsDebugger: showSemanticsDebugger,
+              shortcuts: shortcuts,
+              actions: actions,
+              debugShowMaterialGrid: debugShowMaterialGrid,
+              routerDelegate: routerDelegate!,
+              routeInformationParser: routeInformationParser!,
+            ),
+          );
+        }
+
+        return IconTheme(
           data: NeumorphicTheme.currentTheme(context).iconTheme,
           child: MaterialApp(
               title: title,
@@ -141,8 +220,8 @@ class NeumorphicApp extends StatelessWidget {
               shortcuts: shortcuts,
               actions: actions,
               debugShowMaterialGrid: debugShowMaterialGrid),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
